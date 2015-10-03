@@ -33,7 +33,7 @@
       this.getJson();
     },
     methods: {
-      getJson:function(){
+      getJson:function(callback){
         var that = this;
         $.ajax({
           type: 'GET',
@@ -42,6 +42,9 @@
           dataType: 'json',
           success: function(json) {
             that.$data.items = json;
+            if(typeof callback === 'function') {
+                callback();
+            }
           },
           data: null
         });
